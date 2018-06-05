@@ -24,8 +24,19 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.Repositor
         };
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
-            connector: "memory"
+            connector: 'loopback-connector-mysql',
+            host: 'localhost',
+            port: 3306,
+            database: 'golden_thread',
+            username: 'root',
+            password: 'wrap-san'
         });
+        //Use the below to use an in-memory database
+        //   var dataSourceConfig = new juggler.DataSource({
+        //     name: "db",
+        //     connector: "memory"
+        //   });
+        //this is the statement that sets up the data source!!
         this.dataSource(dataSourceConfig);
     }
     async start() {

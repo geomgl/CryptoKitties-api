@@ -17,16 +17,21 @@ const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const user_1 = require("../models/user");
-class RegistrationController {
-    constructor() { }
+let RegistrationController = class RegistrationController {
+    constructor(userRepo) {
+        this.userRepo = userRepo;
+    }
     async createUser(user) {
+        if (!user.username || !user.password || !user.firstName || !user.lastName || !user.email) {
+            throw new rest_1.HttpErrors.BadRequest('Please input all fields');
+        }
+        let userExists = !!(await this.userRepo.count({ username: user.username }));
+        if (userExists) {
+            throw new rest_1.HttpErrors.BadRequest('Username already exists');
+        }
         return await this.userRepo.create(user);
     }
-}
-__decorate([
-    repository_1.repository(user_repository_1.UserRepository.name),
-    __metadata("design:type", user_repository_1.UserRepository)
-], RegistrationController.prototype, "userRepo", void 0);
+};
 __decorate([
     rest_1.post('/registration'),
     __param(0, rest_1.requestBody()),
@@ -34,5 +39,9 @@ __decorate([
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
 ], RegistrationController.prototype, "createUser", null);
+RegistrationController = __decorate([
+    __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
+    __metadata("design:paramtypes", [user_repository_1.UserRepository])
+], RegistrationController);
 exports.RegistrationController = RegistrationController;
 //# sourceMappingURL=registration.controller.js.map

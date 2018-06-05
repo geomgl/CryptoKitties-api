@@ -17,22 +17,51 @@ const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const user_1 = require("../models/user");
-class LoginController {
-    constructor() { }
-    async createUser(user) {
-        return await this.userRepo.create(user);
+let LoginController = class LoginController {
+    constructor(userRepo) {
+        this.userRepo = userRepo;
     }
-}
-__decorate([
-    repository_1.repository(user_repository_1.UserRepository.name),
-    __metadata("design:type", user_repository_1.UserRepository)
-], LoginController.prototype, "userRepo", void 0);
+    async loginUser(user) {
+        if (!user.username || !user.password) {
+            throw new rest_1.HttpErrors.Unauthorized('Invalid Credentials');
+        }
+        let userExists = !!(await this.userRepo.count({
+            and: [
+                { username: user.username },
+                { password: user.password },
+            ],
+        }));
+        if (!userExists) {
+            throw new rest_1.HttpErrors.Unauthorized('Invalid Credentials');
+        }
+        return await this.userRepo.findOne({
+            where: {
+                and: [
+                    { username: user.username },
+                    { password: user.password }
+                ],
+            },
+        });
+    }
+};
 __decorate([
     rest_1.post('/login'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "createUser", null);
+], LoginController.prototype, "loginUser", null);
+LoginController = __decorate([
+    __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
+    __metadata("design:paramtypes", [user_repository_1.UserRepository])
+], LoginController);
 exports.LoginController = LoginController;
+// private newMethod() {
+//   return this;
+// }
+// }
+// @get('/users')
+// async getAllUsers(): Promise<Array<User>> {
+// return await this.userRepo.find();
+// }
 //# sourceMappingURL=login.controller.js.map
