@@ -18,4 +18,6 @@ export class PingController {
       headers: Object.assign({}, this.req.headers),
     };
   }
+
+  
 }

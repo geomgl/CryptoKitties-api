@@ -24,6 +24,13 @@ let CharitiesController = class CharitiesController {
     async findCharities() {
         return await this.charityRepo.find();
     }
+    async findCharitiesById(id) {
+        let charityExists = !!(await this.charityRepo.count({ id }));
+        if (!charityExists) {
+            throw new rest_1.HttpErrors.BadRequest('ID ${id} does not exist');
+        }
+        return await this.charityRepo.findById(id);
+    }
 };
 __decorate([
     rest_1.get('/charities'),
@@ -31,6 +38,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CharitiesController.prototype, "findCharities", null);
+__decorate([
+    rest_1.get('/charities/{id}'),
+    __param(0, rest_1.param.path.number('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CharitiesController.prototype, "findCharitiesById", null);
 CharitiesController = __decorate([
     __param(0, repository_1.repository(charity_repository_1.CharityRepository.name)),
     __metadata("design:paramtypes", [charity_repository_1.CharityRepository])

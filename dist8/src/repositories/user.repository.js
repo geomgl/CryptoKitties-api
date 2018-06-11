@@ -21,6 +21,9 @@ let UserRepository = class UserRepository extends repository_1.DefaultCrudReposi
         super(user_1.User, datasource);
         this.datasource = datasource;
     }
+    login(arg0) {
+        throw new Error("Method not implemented.");
+    }
 };
 UserRepository = __decorate([
     __param(0, core_1.inject('datasources.db')),

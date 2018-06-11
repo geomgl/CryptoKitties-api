@@ -37,6 +37,11 @@ export class User extends Entity {
   })
   email?: string;
 
+  @property({
+    type: 'string'
+  })
+  profile_pic?: string;
+
   getId() {
     return this.id;
   }

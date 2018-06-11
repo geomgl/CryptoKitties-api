@@ -56,12 +56,4 @@ LoginController = __decorate([
     __metadata("design:paramtypes", [user_repository_1.UserRepository])
 ], LoginController);
 exports.LoginController = LoginController;
-// private newMethod() {
-//   return this;
-// }
-// }
-// @get('/users')
-// async getAllUsers(): Promise<Array<User>> {
-// return await this.userRepo.find();
-// }
 //# sourceMappingURL=login.controller.js.map

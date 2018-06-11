@@ -41,18 +41,6 @@ export class LoginController {
 }
 
 
-
-  // private newMethod() {
-  //   return this;
-  // }
-  // }
-
-
-  // @get('/users')
-  // async getAllUsers(): Promise<Array<User>> {
-  // return await this.userRepo.find();
-  // }
-
  
 
 

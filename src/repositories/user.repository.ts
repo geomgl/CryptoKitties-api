@@ -7,7 +7,11 @@ export class UserRepository extends DefaultCrudRepository<
   User,
   typeof User.prototype.id
 > {
+  login(arg0: any): any {
+    throw new Error("Method not implemented.");
+  }
   constructor(@inject('datasources.db') protected datasource: DataSource) {
     super(User, datasource);
   }
 }
+
