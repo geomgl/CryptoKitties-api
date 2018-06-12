@@ -2,6 +2,7 @@ import { repository } from "@loopback/repository";
 import { CharityRepository } from "../repositories/charity.repository";
 import { get, param, HttpErrors } from "@loopback/rest";
 import { Charity } from "../models/charity";
+import { ProjectRepository } from "../repositories/project.repository";
 
 // Uncomment these imports to begin using these cool features!
 
@@ -11,7 +12,8 @@ import { Charity } from "../models/charity";
 
 export class CharitiesController {
   constructor(
-    @repository(CharityRepository.name) private charityRepo: CharityRepository
+    @repository(CharityRepository.name) private charityRepo: CharityRepository,
+    @repository(ProjectRepository.name) private projectRepo: ProjectRepository
   )
    {}
 
@@ -34,19 +36,19 @@ export class CharitiesController {
 
   }
 
-  @get('/charities/{id}/projects')
-  async findProjectsByCharityId(@param.path.number('id') id: number): Promise<Charity> {
-    let charityExists: boolean = !!(await this.charityRepo.count({ id }));
+  // @get('/charities/{id}/projects')
+  // async findProjectsByCharityId(@param.path.number('id') id: number): Promise<Charity> {
+  //   let charityExists: boolean = !!(await this.charityRepo.count({ id }));
 
-    if (!charityExists) {
-      throw new HttpErrors.BadRequest('ID ${id} does not exist');
+  //   if (!charityExists) {
+  //     throw new HttpErrors.BadRequest('ID ${id} does not exist');
 
-    }
+  //   }
     
     
-    return await this.charityRepo.findById(id);
+  //   return await this.charityRepo.findById(id).projectRepo.find();
 
-  }
+  // }
 
 }
 

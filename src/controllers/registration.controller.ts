@@ -3,6 +3,9 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { User } from "../models/user";
+//import { sign, verify } from 'jsonwebtoken';
+
+import * as bcrypt from 'bcrypt';
 
 
 export class RegistrationController {
@@ -23,7 +26,20 @@ async createUser(@requestBody() user: User)  {
     throw new HttpErrors.BadRequest('Username already exists');
   }
 
-  return await this.userRepo.create(user);
+  //bcrypt is a very slow algorithm, make the generation of hashes take a very long time
+  let hashedPassword = await bcrypt.hash(user.password, 10);
+
+  var userToStore = new User ();
+
+  userToStore.firstname = user.firstname;
+  userToStore.lastname = user.lastname;
+  userToStore.email = user.email;
+  userToStore.password = user.hashedPassword;
+
+
+  let storedUser = await this.userRepo.create(userToStore);
+  storedUser.password = "";
+  return storedUser;
 }
 
 }

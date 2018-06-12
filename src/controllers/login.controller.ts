@@ -10,6 +10,9 @@ export class LoginController {
   @repository(UserRepository.name) private userRepo: UserRepository
   ) {}
 
+  //var email = login.email;
+  //var password = await.bcrypt.hash(login.password, 10);
+
   @post('/login')
   async loginUser(@requestBody() user: User) {
     if ( !user.username || !user.password) {

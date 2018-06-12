@@ -1,4 +1,5 @@
 import {Entity, property, model} from '@loopback/repository';
+import { Project } from './project';
 
 @model({
   name: "charity"
@@ -33,7 +34,7 @@ export class Charity extends Entity {
   @property({
     type: 'string'
   })
-  logo?: string;
+  logo?: string;  
 
   @property({
     type: 'string'

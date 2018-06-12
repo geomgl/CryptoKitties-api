@@ -16,6 +16,11 @@ export class Project extends Entity {
   @property({
     type: 'string',
   })
+  charity_id?: string;
+
+  @property({
+    type: 'string',
+  })
   name: string;
 
   @property({

@@ -1,9 +1,9 @@
 import {Entity, property, model} from '@loopback/repository';
 
 @model({
-  name: "creditcard"
+  name: "paymentmethod"
 })
-export class CreditCard extends Entity {
+export class PaymentMethod extends Entity {
   @property({
     type: 'number',
     id: true
