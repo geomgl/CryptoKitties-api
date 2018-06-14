@@ -21,6 +21,8 @@ let LoginController = class LoginController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
+    //var email = login.email;
+    //var password = await.bcrypt.hash(login.password, 10);
     async loginUser(user) {
         if (!user.username || !user.password) {
             throw new rest_1.HttpErrors.Unauthorized('Invalid Credentials');

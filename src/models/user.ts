@@ -10,17 +10,17 @@ export class User extends Entity {
     type: 'number',
     id: true
   })
-  id?: number;
+  user_id?: number;
 
   @property({
     type: 'string',
   })
-  firstName?: string;
+  first_name?: string;
 
   @property({
     type: 'string',
   })
-  lastName?: string;
+  last_name?: string;
 
   @property({
     type: 'string',
@@ -41,6 +41,11 @@ export class User extends Entity {
     type: 'string'
   })
   profile_pic?: string;
+
+  @property({
+    type: 'string'
+  })
+  address_id?: string;
 
   getId() {
     return this.id;

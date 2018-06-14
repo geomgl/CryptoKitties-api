@@ -17,6 +17,8 @@ const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const user_1 = require("../models/user");
+//import { sign, verify } from 'jsonwebtoken';
+const bcrypt = require("bcrypt");
 let RegistrationController = class RegistrationController {
     constructor(userRepo) {
         this.userRepo = userRepo;
@@ -29,7 +31,16 @@ let RegistrationController = class RegistrationController {
         if (userExists) {
             throw new rest_1.HttpErrors.BadRequest('Username already exists');
         }
-        return await this.userRepo.create(user);
+        //bcrypt is a very slow algorithm, make the generation of hashes take a very long time
+        let hashedPassword = await bcrypt.hash(user.password, 10);
+        var userToStore = new user_1.User();
+        userToStore.firstname = user.firstname;
+        userToStore.lastname = user.lastname;
+        userToStore.email = user.email;
+        userToStore.password = user.hashedPassword;
+        let storedUser = await this.userRepo.create(userToStore);
+        storedUser.password = "";
+        return storedUser;
     }
 };
 __decorate([

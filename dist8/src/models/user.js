@@ -21,19 +21,19 @@ __decorate([
         id: true
     }),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], User.prototype, "user_id", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], User.prototype, "first_name", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], User.prototype, "last_name", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
@@ -58,6 +58,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], User.prototype, "profile_pic", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], User.prototype, "address_id", void 0);
 User = __decorate([
     repository_1.model({
         name: "user"

@@ -7,14 +7,17 @@ import { User } from "../models/user";
 import {sign, verify} from 'jsonwebtoken'; 
 import * as bcrypt from 'bcrypt';
 import {Login} from '../models/login';
-import { Stripe } from '@ionic-native/stripe';
+import { Donation } from "../models/donation";
+import { DonationRepository } from "../repositories/donation.repository";
+//import { Stripe } from '@ionic-native/stripe';
 
 
 
 
 export class UsersController { 
   constructor(
-    @repository(UserRepository) private userRepo: UserRepository
+    @repository(UserRepository) private userRepo: UserRepository,
+    @repository(DonationRepository) private donationRepo: DonationRepository
   ) {}
 
 
@@ -118,53 +121,20 @@ async loginWithQuery(@requestBody() login: Login): Promise<User> {
   }
 
   @get('/users/{user_id}/donations')
-  async getDonationsByUserId(
-    @param.path.number('user_id') userId: number,
-    @param.query.date('date_from') dateFrom: Date
-  ) {
-    console.log(userId);
-    console.log(dateFrom);
-  }
+  async findDonationsByUserId(@param.path.number('user_id') user_id: number): Promise<Array<Donation>> {
+    let userExists: boolean = !!(await this.userRepo.count({ user_id }));
 
-//   @post('/login-with-query')
-//   async loginWithQuery(@requestBody() login: Login): Promise<User> {
-//   var users = await this.userRepo.find({
-//     where: {
-//       email: login.email
-//     }
-//   })
-// }
-
-
-
-// @post('/login')
-// async loginUser(@requestBody() user: User) {
-//   if ( !user.username || !user.password) {
-//     throw new HttpErrors.Unauthorized('Invalid Credentials');
-//   }
-
-// let userExists: boolean = !!(await this.userRepo.count({
-//     and: [
-//       {username:  user.username},
-//       {password: user.password},
-//     ],
-//   })
-// );
-
-//   if (!userExists) {
-//     throw new HttpErrors.Unauthorized('Invalid Credentials');
-//   }
-
-//   return await this.userRepo.findOne({
-//     where: {
-//       and: [
-//         {username:  user.username},
-//         {password: user.password}
-//       ],
-//     },
-//   });
-// }
-  
+    if (!userExists) {
+      throw new HttpErrors.BadRequest('ID ${user_id} does not exist');
+    }
+    
+    return await this.donationRepo.find({
+      where: {
+        user_id: user_id
+      }
+    });
+}
+ 
 }
 
 

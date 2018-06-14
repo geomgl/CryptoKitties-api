@@ -19,25 +19,20 @@ export class Charity extends Entity {
   @property({
     type: 'string',
   })
-  mission?: string;
+  mission: string;
 
   @property({
     type: 'string',
   })
-  description?: string;
+  description: string;
 
   @property({
     type: 'string'
   })
-  button?: string;
+  img: string;  
 
   @property({
     type: 'string'
   })
-  logo?: string;  
-
-  @property({
-    type: 'string'
-  })
-  location?: string;
+  location: string;
 }
