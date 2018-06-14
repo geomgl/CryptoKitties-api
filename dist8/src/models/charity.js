@@ -18,7 +18,7 @@ __decorate([
         id: true
     }),
     __metadata("design:type", Number)
-], Charity.prototype, "id", void 0);
+], Charity.prototype, "charity_id", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
@@ -43,6 +43,18 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Charity.prototype, "button", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Charity.prototype, "logo", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Charity.prototype, "location", void 0);
 Charity = __decorate([
     repository_1.model({
         name: "charity"

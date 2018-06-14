@@ -5,7 +5,7 @@ import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { PaymentRepository } from "../repositories/payment.repository";
 import { PaymentMethod } from "../models/creditcard";
 
-export class LoginController {
+export class PaymentController {
   constructor(
   @repository(PaymentRepository.name) private paymentRepo: PaymentRepository
   ) {}

@@ -22,8 +22,8 @@ let Update_userController = class Update_userController {
     }
 };
 Update_userController = __decorate([
-    __param(0, repository_1.repository(user_repository_1.UserRepository)),
-    __metadata("design:paramtypes", [user_repository_1.UserRepository])
+    __param(0, repository_1.repository(user_repository_1.UserRepo)),
+    __metadata("design:paramtypes", [user_repository_1.UserRepo])
 ], Update_userController);
 exports.Update_userController = Update_userController;
 //# sourceMappingURL=update-user.controller.js.map

@@ -1,5 +1,4 @@
 "use strict";
-// Uncomment these imports to begin using these cool features!
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -14,46 +13,75 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
+const user_repository_1 = require("../repositories/user.repository");
 const user_1 = require("../models/user");
+const login_1 = require("../models/login");
+const jsonwebtoken_1 = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 let LoginController = class LoginController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
-    async loginUser(user) {
-        if (!user.username || !user.password) {
-            throw new rest_1.HttpErrors.Unauthorized('Invalid Credentials');
+    // register a new user
+    async createUser(user) {
+        let hashedPassword = await bcrypt.hash(user.password, 10);
+        console.log(user);
+        var userToStore = new user_1.User();
+        //userToStore.user_id = user.user_id;
+        userToStore.first_name = user.first_name;
+        userToStore.last_name = user.last_name;
+        userToStore.email = user.email;
+        // userToStore.profile_pic = user.profile_pic; 
+        userToStore.password = hashedPassword;
+        console.log(userToStore);
+        let storedUser = await this.userRepo.create(userToStore);
+        storedUser.password = "";
+        return storedUser;
+    }
+    async login(login) {
+        var users = await this.userRepo.find();
+        var username = login.username;
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i];
+            if (user.username == username && await bcrypt.compare(login.password, user.password)) {
+                var jwt = jsonwebtoken_1.sign({
+                    user: {
+                        id: user.id,
+                        firstName: user.first_name,
+                        email: user.email
+                    },
+                    anything: "hello"
+                }, 'shh', {
+                    issuer: 'auth.ix.co.za',
+                    audience: 'ix.co.za',
+                });
+                return {
+                    token: jwt,
+                };
+            }
         }
-        let userExists = !!(await this.userRepo.count({
-            and: [
-                { username: user.username },
-                { password: user.password },
-            ],
-        }));
-        if (!userExists) {
-            throw new rest_1.HttpErrors.Unauthorized('Invalid Credentials');
-        }
-        return await this.userRepo.findOne({
-            where: {
-                and: [
-                    { username: user.username },
-                    { password: user.password }
-                ],
-            },
-        });
+        //return "Error";
+        throw new rest_1.HttpErrors.Unauthorized('Incorrect username and/or password!');
     }
 };
 __decorate([
-    rest_1.post('/login'),
+    rest_1.post('/register'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
-], LoginController.prototype, "loginUser", null);
+], LoginController.prototype, "createUser", null);
+__decorate([
+    rest_1.post('/login'),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [login_1.Login]),
+    __metadata("design:returntype", Promise)
+], LoginController.prototype, "login", null);
 LoginController = __decorate([
-    __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
-    __metadata("design:paramtypes", [user_repository_1.UserRepository])
+    __param(0, repository_1.repository(user_repository_1.UserRepo.name)),
+    __metadata("design:paramtypes", [user_repository_1.UserRepo])
 ], LoginController);
 exports.LoginController = LoginController;
 //# sourceMappingURL=login.controller.js.map
