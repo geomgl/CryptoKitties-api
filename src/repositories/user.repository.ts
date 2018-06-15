@@ -3,7 +3,7 @@ import {inject} from '@loopback/core';
 import { DataSource } from 'loopback-datasource-juggler';
 import { User } from '../models/user';
 
-export class UserRepository extends DefaultCrudRepository<
+export class UserRepo extends DefaultCrudRepository<
   User,
   typeof User.prototype.id
 > {
