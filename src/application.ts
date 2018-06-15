@@ -36,9 +36,9 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
       connector: 'loopback-connector-mysql',
       host: 'localhost',
       port: 3306,
-      database: 'golden_thread',
+      database: 'crypto_kitties',
       username: 'root',
-      password: 'wrap-san'
+      password: 'four'
       });
 
     //Use the below to use an in-memory database

@@ -10,39 +10,39 @@ export class User extends Entity {
     type: 'number',
     id: true
   })
-  id?: number;
+  user_id?: number;
 
   @property({
     type: 'string',
+    required: true
   })
-  firstName?: string;
+  first_name: string;
 
   @property({
     type: 'string',
+    required: true
   })
-  lastName?: string;
+  last_name: string;
 
   @property({
     type: 'string',
-  })
-  username: string;
-
-  @property({
-    type: 'string'
+    required: true
   })
   password: string;
 
   @property({
-    type: 'string'
+    type: 'string',
+    required: true
+
   })
-  email?: string;
+  email: string;
 
   @property({
-    type: 'string'
+    type: 'string',
   })
   profile_pic?: string;
 
   getId() {
-    return this.id;
+    return this.user_id;
   }
 }
