@@ -1,5 +1,5 @@
 import { repository } from "@loopback/repository";
-import { UserRepository } from "../repositories/user.repository";
+import { UserRepo } from "../repositories/user.repository";
 
 // Uncomment these imports to begin using these cool features!
 
@@ -8,7 +8,7 @@ import { UserRepository } from "../repositories/user.repository";
 
 export class Update_userController {
   constructor(
-    @repository(UserRepository) private userRepo: UserRepository
+    @repository(UserRepo) private userRepo: UserRepo
   ) {}
 
   

@@ -16,7 +16,7 @@ const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
 const user_1 = require("../models/user");
-let UserRepository = class UserRepository extends repository_1.DefaultCrudRepository {
+let UserRepo = class UserRepo extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
         super(user_1.User, datasource);
         this.datasource = datasource;
@@ -25,9 +25,9 @@ let UserRepository = class UserRepository extends repository_1.DefaultCrudReposi
         throw new Error("Method not implemented.");
     }
 };
-UserRepository = __decorate([
+UserRepo = __decorate([
     __param(0, core_1.inject('datasources.db')),
     __metadata("design:paramtypes", [loopback_datasource_juggler_1.DataSource])
-], UserRepository);
-exports.UserRepository = UserRepository;
+], UserRepo);
+exports.UserRepo = UserRepo;
 //# sourceMappingURL=user.repository.js.map

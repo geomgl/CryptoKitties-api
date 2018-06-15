@@ -1,54 +1,78 @@
-// Uncomment these imports to begin using these cool features!
 
-import { repository } from "@loopback/repository";
-import { UserRepository } from "../repositories/user.repository";
-import { post, get, requestBody, HttpErrors } from "@loopback/rest";
-import { User } from "../models/user";
+import { repository } from '@loopback/repository';
+import { post, get, requestBody, HttpErrors, param } from '@loopback/rest';
+import { UserRepo } from '../repositories/user.repository';
+import { User } from '../models/user';
+import { Login } from '../models/login';
+import { sign, verify } from 'jsonwebtoken';
+
+import * as bcrypt from 'bcrypt';
 
 export class LoginController {
-  constructor(
-  @repository(UserRepository.name) private userRepo: UserRepository
-  ) {}
+    constructor(
+        @repository(UserRepo.name) private userRepo: UserRepo,
+    ) { }
 
-  //var email = login.email;
-  //var password = await.bcrypt.hash(login.password, 10);
+    // register a new user
+    @post('/register')
+    async createUser(@requestBody() user: User) {
 
-  @post('/login')
-  async loginUser(@requestBody() user: User) {
-    if ( !user.username || !user.password) {
-      throw new HttpErrors.Unauthorized('Invalid Credentials');
+        let hashedPassword = await bcrypt.hash(user.password, 10);
+
+        console.log(user);
+
+        var userToStore = new User();
+        //userToStore.user_id = user.user_id;
+        userToStore.first_name = user.first_name; 
+        userToStore.last_name = user.last_name;
+        userToStore.email = user.email;
+        // userToStore.profile_pic = user.profile_pic; 
+        userToStore.password = hashedPassword;
+
+        console.log(userToStore);
+
+        let storedUser = await this.userRepo.create(userToStore);
+        storedUser.password = ""; 
+
+        
+
+        return storedUser;
+
+
     }
 
-  let userExists: boolean = !!(await this.userRepo.count({
-      and: [
-        {username:  user.username},
-        {password: user.password},
-      ],
-    })
-  );
+    @post('/login')
+    async login(@requestBody() login: Login): Promise<any> {
+        var users = await this.userRepo.find();
 
-    if (!userExists) {
-      throw new HttpErrors.Unauthorized('Invalid Credentials');
+        var username = login.username;
+
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i];
+            if (user.username == username && await bcrypt.compare(login.password, user.password)) {
+
+                var jwt = sign(
+                    {
+                        user: {
+                            id: user.id,
+                            firstName: user.first_name,
+                            email: user.email
+                        },
+                        anything: "hello"
+                    },
+                    'shh',
+                    {
+                        issuer: 'auth.ix.co.za',
+                        audience: 'ix.co.za',
+                    },
+                );
+
+                return {
+                    token: jwt,
+                };
+            }
+        }
+        //return "Error";
+        throw new HttpErrors.Unauthorized('Incorrect username and/or password!');
     }
-
-    return await this.userRepo.findOne({
-      where: {
-        and: [
-          {username:  user.username},
-          {password: user.password}
-        ],
-      },
-    });
-  }
-
 }
-
-
- 
-
-
-
-
-
-
-
