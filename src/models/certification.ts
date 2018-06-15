@@ -22,7 +22,7 @@ export class Certification extends Entity {
   @property({
     type: 'string',
   })
-  image?: string;
+  img?: string;
 
   @property({
     type: 'string',

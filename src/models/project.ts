@@ -36,7 +36,12 @@ export class Project extends Entity {
   @property({
     type: 'string'
   })
-  image?: string;
+  img?: string;
+
+  @property({
+    type: 'string'
+  })
+  date?: string;
 
   getId() {
     return this.project_id;

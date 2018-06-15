@@ -8,7 +8,7 @@ export class PaymentMethod extends Entity {
     type: 'number',
     id: true
   })
-  cc_id?: number;
+  payment_id?: number;
 
   @property({
     type: 'string',
@@ -18,12 +18,22 @@ export class PaymentMethod extends Entity {
   @property({
     type: 'string',
   })
-  number: string;
+  user_id: string;
+
+  @property({
+    type: 'string',
+  })
+  card_number: string;
 
   @property({
     type: 'string',
   })
   CVV: string;
+
+  @property({
+    type: 'string',
+  })
+  card_type: string;
 
   @property({
     type: 'string'
