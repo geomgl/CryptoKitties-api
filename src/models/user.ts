@@ -16,13 +16,13 @@ export class User extends Entity {
     type: 'string',
     required: true
   })
-  first_name: string;
+  first_name?: string;
 
   @property({
     type: 'string',
     required: true
   })
-  last_name: string;
+  last_name?: string;
 
   @property({
     type: 'string',
@@ -33,14 +33,18 @@ export class User extends Entity {
   @property({
     type: 'string',
     required: true
-
   })
   email: string;
 
   @property({
-    type: 'string',
+    type:'string'
   })
   profile_pic?: string;
+
+  @property({
+    type: 'string',
+  })
+  address_id?: string;
 
   getId() {
     return this.user_id;

@@ -13,12 +13,12 @@ export class PaymentMethod extends Entity {
   @property({
     type: 'string',
   })
-  user_id: string;
+  name: string;
 
   @property({
     type: 'string',
   })
-  payment_name: string;
+  user_id: string;
 
   @property({
     type: 'string',
@@ -31,11 +31,16 @@ export class PaymentMethod extends Entity {
   CVV: string;
 
   @property({
+    type: 'string',
+  })
+  card_type: string;
+
+  @property({
     type: 'string'
   })
   expiration_date: string;
 
   getId() {
-    return this.payment_id;
+    return this.cc_id;
   }
 }

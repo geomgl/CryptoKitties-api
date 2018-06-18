@@ -3,7 +3,7 @@
 import { repository } from "@loopback/repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { PaymentRepository } from "../repositories/payment.repository";
-import { PaymentMethod } from "../models/creditcard";
+import { PaymentMethod } from "../models/paymentmethod";
 
 export class PaymentController {
   constructor(
