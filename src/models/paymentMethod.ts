@@ -8,17 +8,22 @@ export class PaymentMethod extends Entity {
     type: 'number',
     id: true
   })
-  cc_id?: number;
+  payment_id?: number;
 
   @property({
     type: 'string',
   })
-  name: string;
+  user_id: string;
 
   @property({
     type: 'string',
   })
-  number: string;
+  payment_name: string;
+
+  @property({
+    type: 'string',
+  })
+  card_number: string;
 
   @property({
     type: 'string',
@@ -31,6 +36,6 @@ export class PaymentMethod extends Entity {
   expiration_date: string;
 
   getId() {
-    return this.cc_id;
+    return this.payment_id;
   }
 }
