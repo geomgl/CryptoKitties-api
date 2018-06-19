@@ -35,6 +35,12 @@ let LoginController = class LoginController {
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
         console.log(userToStore);
+        var users = await this.userRepo.find();
+        for (var i = 0; i < users.length; i++) {
+            if (user.email == users[i].email) {
+                throw new rest_1.HttpErrors.BadRequest('email address already registered');
+            }
+        }
         let storedUser = await this.userRepo.create(userToStore);
         storedUser.password = "";
         return storedUser;
