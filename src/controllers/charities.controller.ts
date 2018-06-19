@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 import { repository } from "@loopback/repository";
 import { CharityRepository } from "../repositories/charity.repository";
@@ -76,5 +74,3 @@ export class CharitiesController {
 
 }
 
-
->>>>>>> 5a773f731c0e8affced1e581686f292e965db317

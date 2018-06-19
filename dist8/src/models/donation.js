@@ -24,10 +24,40 @@ __decorate([
 ], Donation.prototype, "donation_id", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'number',
     }),
     __metadata("design:type", Number)
-], Donation.prototype, "donation_amt_usd", void 0);
+], Donation.prototype, "amount", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], Donation.prototype, "user_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], Donation.prototype, "charity_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Donation.prototype, "frequency", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Donation.prototype, "project_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Donation.prototype, "date", void 0);
 Donation = __decorate([
     repository_1.model({
         name: "donation"

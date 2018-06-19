@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 let User = class User extends repository_1.Entity {
+    // @property({
+    //   type: 'string',
+    // })
+    // address_id?: string;
     getId() {
         return this.user_id;
     }
@@ -52,7 +56,7 @@ __decorate([
 ], User.prototype, "email", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'string'
     }),
     __metadata("design:type", String)
 ], User.prototype, "profile_pic", void 0);

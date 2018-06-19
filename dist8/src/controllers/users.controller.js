@@ -15,8 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
+const donation_repository_1 = require("../repositories/donation.repository");
+//import { Stripe } from '@ionic-native/stripe';
 let UserController = class UserController {
-    constructor(userRepo) {
+    constructor(donationRepo, userRepo) {
+        this.donationRepo = donationRepo;
         this.userRepo = userRepo;
     }
     async findUsers() {
@@ -29,6 +32,17 @@ let UserController = class UserController {
             throw new rest_1.HttpErrors.BadRequest(`user ID ${id} does not exist`);
         }
         return await this.userRepo.findById(id);
+    }
+    async findDonationsByUserId(user_id) {
+        let userExists = !!(await this.userRepo.count({ user_id }));
+        if (!userExists) {
+            throw new rest_1.HttpErrors.BadRequest('ID ${user_id} does not exist');
+        }
+        return await this.donationRepo.find({
+            where: {
+                user_id: user_id
+            }
+        });
     }
 };
 __decorate([
@@ -44,9 +58,18 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findUsersById", null);
+__decorate([
+    rest_1.get('/users/{user_id}/donations'),
+    __param(0, rest_1.param.path.number('user_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "findDonationsByUserId", null);
 UserController = __decorate([
-    __param(0, repository_1.repository(user_repository_1.UserRepo)),
-    __metadata("design:paramtypes", [user_repository_1.UserRepo])
+    __param(0, repository_1.repository(donation_repository_1.DonationRepository)),
+    __param(1, repository_1.repository(user_repository_1.UserRepo)),
+    __metadata("design:paramtypes", [donation_repository_1.DonationRepository,
+        user_repository_1.UserRepo])
 ], UserController);
 exports.UserController = UserController;
 //# sourceMappingURL=users.controller.js.map

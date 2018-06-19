@@ -33,7 +33,7 @@ __decorate([
         type: 'string',
     }),
     __metadata("design:type", String)
-], Address.prototype, "postal_code", void 0);
+], Address.prototype, "zip", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

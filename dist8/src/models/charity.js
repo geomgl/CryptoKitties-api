@@ -42,13 +42,7 @@ __decorate([
         type: 'string'
     }),
     __metadata("design:type", String)
-], Charity.prototype, "button", void 0);
-__decorate([
-    repository_1.property({
-        type: 'string'
-    }),
-    __metadata("design:type", String)
-], Charity.prototype, "logo", void 0);
+], Charity.prototype, "img", void 0);
 __decorate([
     repository_1.property({
         type: 'string'

@@ -41,10 +41,10 @@ export class User extends Entity {
   })
   profile_pic?: string;
 
-  @property({
-    type: 'string',
-  })
-  address_id?: string;
+  // @property({
+  //   type: 'string',
+  // })
+  // address_id?: string;
 
   getId() {
     return this.user_id;

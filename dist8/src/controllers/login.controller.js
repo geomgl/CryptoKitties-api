@@ -35,11 +35,16 @@ let LoginController = class LoginController {
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
         console.log(userToStore);
+        // check if email address already exists with another user
         var users = await this.userRepo.find();
         for (var i = 0; i < users.length; i++) {
             if (user.email == users[i].email) {
-                throw new rest_1.HttpErrors.BadRequest('email address already registered');
+                throw new rest_1.HttpErrors.BadRequest('email address already registered with another user');
             }
+        }
+        // check for characters expected in an email address
+        if (!user.email.includes("@") || !user.email.includes(".")) {
+            throw new rest_1.HttpErrors.BadRequest('email address invalid');
         }
         let storedUser = await this.userRepo.create(userToStore);
         storedUser.password = "";
@@ -63,7 +68,7 @@ let LoginController = class LoginController {
                     audience: 'ix.co.za',
                 });
                 return {
-                    token: jwt,
+                    token: jwt
                 };
             }
         }
