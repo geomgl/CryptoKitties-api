@@ -5,6 +5,7 @@ export declare class Project extends Entity {
     name: string;
     subhead?: string;
     description?: string;
-    image?: string;
+    img?: string;
+    date?: string;
     getId(): number | undefined;
 }

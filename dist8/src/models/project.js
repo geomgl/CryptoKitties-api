@@ -51,7 +51,13 @@ __decorate([
         type: 'string'
     }),
     __metadata("design:type", String)
-], Project.prototype, "image", void 0);
+], Project.prototype, "img", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Project.prototype, "date", void 0);
 Project = __decorate([
     repository_1.model({
         name: "project"

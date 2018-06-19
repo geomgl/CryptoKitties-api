@@ -33,7 +33,7 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
     // var environment = process.env.NODE_ENV;
     var databaseName = 'golden_thread';
     var databaseUsername = 'root';
-    var databasePassword = 'wrap-san';
+    var databasePassword = 'four';
 
     // if (environment = 'john') {
     //   //databaseName = 'golden_thread';
@@ -52,22 +52,22 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
     // console.log(databaseName);
 
   
-    // var dataSourceConfig = new juggler.DataSource({
+    var dataSourceConfig = new juggler.DataSource({
 
-    //   name: "db",
-    //   connector: 'loopback-connector-mysql',
-    //   host: 'localhost',
-    //   port: 3306,
-    //   database: databaseName,
-    //   username: databaseUsername,
-    //   password: databasePassword
-    //   });
+      name: "db",
+      connector: 'loopback-connector-mysql',
+      host: 'localhost',
+      port: 3306,
+      database: databaseName,
+      username: databaseUsername,
+      password: databasePassword
+      });
 
-  //Use the below to use an in-memory database
-  var dataSourceConfig = new juggler.DataSource({
-    name: "db",
-    connector: "memory"
-  });
+  // //Use the below to use an in-memory database
+  // var dataSourceConfig = new juggler.DataSource({
+  //   name: "db",
+  //   connector: "memory"
+  // });
 
  //this is the statement that sets up the data source!!
   this.dataSource(dataSourceConfig);

@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
-const creditcard_1 = require("../models/creditcard");
+const paymentmethod_1 = require("../models/paymentmethod");
 let PaymentRepository = class PaymentRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
-        super(creditcard_1.PaymentMethod, datasource);
+        super(paymentmethod_1.PaymentMethod, datasource);
         this.datasource = datasource;
     }
     login(arg0) {

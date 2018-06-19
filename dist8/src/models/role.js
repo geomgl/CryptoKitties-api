@@ -22,6 +22,27 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Role.prototype, "role_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        id: true
+    }),
+    __metadata("design:type", String)
+], Role.prototype, "role_name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        id: true
+    }),
+    __metadata("design:type", Number)
+], Role.prototype, "user_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        id: true
+    }),
+    __metadata("design:type", Number)
+], Role.prototype, "charity_id", void 0);
 Role = __decorate([
     repository_1.model({
         name: "role"

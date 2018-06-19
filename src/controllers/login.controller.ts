@@ -29,13 +29,17 @@ export class LoginController {
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
 
-        console.log(userToStore);
+        // check to see if proivided email address is valid
+        if (!user.email.includes("@") || !user.email.includes(".")) {
+            throw new HttpErrors.BadRequest('please enter valid email address');
+        }
+        
+        // check for an existing user with provided email address
         var users = await this.userRepo.find();
         for (var i = 0; i < users.length; i++) {
             if (user.email == users[i].email) {
                 throw new HttpErrors.BadRequest('email address already registered');
             }
-
         }
 
         let storedUser = await this.userRepo.create(userToStore);

@@ -16,7 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const payment_repository_1 = require("../repositories/payment.repository");
-const creditcard_1 = require("../models/creditcard");
+const paymentmethod_1 = require("../models/paymentmethod");
 let PaymentController = class PaymentController {
     constructor(paymentRepo) {
         this.paymentRepo = paymentRepo;
@@ -35,7 +35,7 @@ __decorate([
     rest_1.post('/payment-methods'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [creditcard_1.PaymentMethod]),
+    __metadata("design:paramtypes", [paymentmethod_1.PaymentMethod]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "paymentMethods", null);
 __decorate([

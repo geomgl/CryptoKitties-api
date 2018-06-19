@@ -33,7 +33,25 @@ __decorate([
         type: 'string'
     }),
     __metadata("design:type", String)
-], Cryptoanimal.prototype, "image", void 0);
+], Cryptoanimal.prototype, "img", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Cryptoanimal.prototype, "criteria", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Cryptoanimal.prototype, "user_id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string'
+    }),
+    __metadata("design:type", String)
+], Cryptoanimal.prototype, "description", void 0);
 Cryptoanimal = __decorate([
     repository_1.model({
         name: "cryptoanimal"

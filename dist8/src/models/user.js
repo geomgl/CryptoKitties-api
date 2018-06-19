@@ -52,10 +52,16 @@ __decorate([
 ], User.prototype, "email", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'string'
     }),
     __metadata("design:type", String)
 ], User.prototype, "profile_pic", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], User.prototype, "address_id", void 0);
 User = __decorate([
     repository_1.model({
         name: "user"

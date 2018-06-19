@@ -33,7 +33,7 @@ __decorate([
         type: 'string',
     }),
     __metadata("design:type", String)
-], Certification.prototype, "image", void 0);
+], Certification.prototype, "img", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
