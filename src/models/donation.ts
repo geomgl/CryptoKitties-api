@@ -11,9 +11,34 @@ export class Donation extends Entity {
   donation_id?: number;
 
   @property({
+    type: 'number',
+  })
+  amount: number;
+
+  @property({
+    type: 'number',
+  })
+  user_id: number;
+
+  @property({
+    type: 'number',
+  })
+  charity_id: number;
+
+  @property({
     type: 'string',
   })
-  donation_amt_usd: number;
+  frequency: string;
+
+  @property({
+    type: 'string',
+  })
+  project_id?: string;
+
+  @property({
+    type: 'string',
+  })
+  date: string;
 
   getId() {
     return this.donation_id;

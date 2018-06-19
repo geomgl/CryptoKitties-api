@@ -4,8 +4,13 @@
         "host": "localhost",
         "port": "3306",
         "user": "root",
+<<<<<<< HEAD
         "password": "four",
         "database": "crypto_kitties"   
+=======
+        "password": "wrap-san",
+        "database": "golden-thread"   
+>>>>>>> 5a773f731c0e8affced1e581686f292e965db317
     }
 }
 

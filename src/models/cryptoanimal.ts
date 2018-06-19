@@ -18,7 +18,22 @@ export class Cryptoanimal extends Entity {
   @property({
     type: 'string'
   })
-  image: string;
+  img: string;
+
+  @property({
+    type: 'string'
+  })
+  criteria: string;
+
+  @property({
+    type: 'string'
+  })
+  user_id: string;
+
+  @property({
+    type: 'string'
+  })
+  description: string;
 
   getId() {
     return this.animal_id;

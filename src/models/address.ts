@@ -18,7 +18,7 @@ export class Address extends Entity {
   @property({
     type: 'string',
   })
-  postal_code: string;
+  zip: string;
 
   @property({
     type: 'string',
