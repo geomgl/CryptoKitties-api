@@ -34,16 +34,8 @@ let LoginController = class LoginController {
         userToStore.email = user.email;
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
-<<<<<<< HEAD
         console.log(userToStore);
         // check if email address already exists with another user
-=======
-        // check to see if proivided email address is valid
-        if (!user.email.includes("@") || !user.email.includes(".")) {
-            throw new rest_1.HttpErrors.BadRequest('please enter valid email address');
-        }
-        // check for an existing user with provided email address
->>>>>>> master
         var users = await this.userRepo.find();
         for (var i = 0; i < users.length; i++) {
             if (user.email == users[i].email) {

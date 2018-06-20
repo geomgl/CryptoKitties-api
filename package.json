@@ -30,7 +30,9 @@
     "posttest": "npm run lint",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "george": "(set NODE_ENV=george) && node ."
+
   },
   "repository": {
     "type": "git"

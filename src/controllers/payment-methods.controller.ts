@@ -17,6 +17,13 @@ export class PaymentController {
       throw new HttpErrors.Unauthorized('No Payment Methods');
     }
 
+    // how to pass parameters into endpoint:
+
+    // how to secure the endpoint 
+    // quesrt parameter jwt as a string and throw an error if no token pprovided
+    // user path parameters when tyring to access a specific id on a resource, otherwise use query parameters
+    // in front end you would put "?param1= whateverparam1is 
+
     return await this.paymentRepo.create(paymentMethod);
 
 }

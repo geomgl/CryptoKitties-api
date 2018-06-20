@@ -9,7 +9,12 @@ const repository_1 = require("@loopback/repository");
 /* tslint:enable:no-unused-variable */
 class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
-        super(options);
+        // super(options);
+        super({
+            rest: {
+                port: process.env.PORT || 3000
+            }
+        });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -22,40 +27,16 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.Repositor
                 nested: true,
             },
         };
-        // var environment = process.env.NODE_ENV;
-<<<<<<< HEAD
-        var databaseName = 'crypto_kitties';
-=======
-        var databaseName = 'golden_thread';
->>>>>>> master
-        var databaseUsername = 'root';
-        var databasePassword = 'four';
-        // if (environment = 'john') {
-        //   //databaseName = 'golden_thread';
-        //   databaseName = process.env.DATABASE_NAME as string;
-        // }
-        // if (environment = 'gemma') {
-        //   databaseName = 'golden_thread';
-        // }
-        // if (environment = 'george') {
-        //   databaseName = 'golden_thread';
-        // }
-        // console.log(environment);
-        // console.log(databaseName);
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
             connector: 'loopback-connector-mysql',
-            host: 'localhost',
+            host: process.env.DATABASE_HOST,
             port: 3306,
-            database: databaseName,
-            username: databaseUsername,
-            password: databasePassword
+            database: process.env.DATABASE_NAME,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD
         });
-<<<<<<< HEAD
         //Use the below to use an in-memory database
-=======
-        // //Use the below to use an in-memory database
->>>>>>> master
         // var dataSourceConfig = new juggler.DataSource({
         //   name: "db",
         //   connector: "memory"

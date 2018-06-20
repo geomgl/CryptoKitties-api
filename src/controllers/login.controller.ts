@@ -29,32 +29,21 @@ export class LoginController {
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
 
-<<<<<<< HEAD
         
         console.log(userToStore);
         // check if email address already exists with another user
-=======
-        // check to see if proivided email address is valid
-        if (!user.email.includes("@") || !user.email.includes(".")) {
-            throw new HttpErrors.BadRequest('please enter valid email address');
-        }
         
-        // check for an existing user with provided email address
->>>>>>> master
         var users = await this.userRepo.find();
         for (var i = 0; i < users.length; i++) {
             if (user.email == users[i].email) {
                 throw new HttpErrors.BadRequest('email address already registered with another user');
             }
-<<<<<<< HEAD
         }
 
         // check for characters expected in an email address
         if (!user.email.includes("@") || !user.email.includes(".")) {
             throw new HttpErrors.BadRequest('email address invalid');
 
-=======
->>>>>>> master
         }
 
 
@@ -70,7 +59,6 @@ export class LoginController {
     @post('/login')
     async login(@requestBody() login: Login): Promise<any> {
         var users = await this.userRepo.find();
-
         var email = login.email;
 
         for (var i = 0; i < users.length; i++) {
