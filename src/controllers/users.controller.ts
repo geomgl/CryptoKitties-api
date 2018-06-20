@@ -16,6 +16,7 @@ import { DonationRepository } from "../repositories/donation.repository";
 
 export class UserController {
   constructor(
+
     @repository(DonationRepository) private donationRepo: DonationRepository,
     @repository(UserRepo) protected userRepo: UserRepo,
   ) { }

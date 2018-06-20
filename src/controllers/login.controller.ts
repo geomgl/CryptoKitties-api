@@ -59,6 +59,7 @@ export class LoginController {
     @post('/login')
     async login(@requestBody() login: Login): Promise<any> {
         var users = await this.userRepo.find();
+
         var email = login.email;
 
         for (var i = 0; i < users.length; i++) {
