@@ -1,4 +1,9 @@
-{
+
+{"defaultEnv": {"ENV": "NODE_ENV"},
+
+
+
+
     "dev": {
         "driver": "mysql",
         "host": "localhost",

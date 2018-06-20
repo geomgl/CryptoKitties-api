@@ -45,16 +45,16 @@ export class LoginController {
     async login(@requestBody() login: Login): Promise<any> {
         var users = await this.userRepo.find();
 
-        var username = login.username;
+        var email = login.email;
 
         for (var i = 0; i < users.length; i++) {
             var user = users[i];
-            if (user.username == username && await bcrypt.compare(login.password, user.password)) {
+            if (user.email == email && await bcrypt.compare(login.password, user.password)) {
 
                 var jwt = sign(
                     {
                         user: {
-                            id: user.id,
+                            id: user.user_id,
                             firstName: user.first_name,
                             email: user.email
                         },

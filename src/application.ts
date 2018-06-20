@@ -14,7 +14,13 @@ import { Class,
 export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestApplication)) {
   
   constructor(options?: ApplicationConfig) {
-    super(options);
+    //super(options);
+
+    super({
+      rest: {
+        port: process.env.PORT || 3000
+      }
+    });
 
     // Set up the custom sequence
     this.sequence(MySequence);
@@ -29,6 +35,7 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
         nested: true,
       },
     };
+
 
     // var environment = process.env.NODE_ENV;
     var databaseName = 'golden_thread';
@@ -63,11 +70,17 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
       password: databasePassword
       });
 
-    //Use the below to use an in-memory database
-//   var dataSourceConfig = new juggler.DataSource({
-//     name: "db",
-//     connector: "memory"
-//   });
+      // host: process.env.DATABASE_HOST,
+      // port: 3306,
+      // database: process.env.DATABASE_NAME,
+      // username: process.env.DATABASE_USERNAME,
+      // password: process.env.DATABASE_PASSWORD
+
+    // Use the below to use an in-memory database
+  // var dataSourceConfig = new juggler.DataSource({
+  //   name: "db",
+  //   connector: "memory"
+  // });
 
  //this is the statement that sets up the data source!!
   this.dataSource(dataSourceConfig);
