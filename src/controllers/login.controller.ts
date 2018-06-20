@@ -28,11 +28,9 @@ export class LoginController {
         userToStore.email = user.email;
         // userToStore.profile_pic = user.profile_pic; 
         userToStore.password = hashedPassword;
-
-        
         console.log(userToStore);
+
         // check if email address already exists with another user
-        
         var users = await this.userRepo.find();
         for (var i = 0; i < users.length; i++) {
             if (user.email == users[i].email) {
@@ -46,8 +44,7 @@ export class LoginController {
 
         }
 
-
-
+        // create a new user in server
         let storedUser = await this.userRepo.create(userToStore);
         storedUser.password = ""; 
 

@@ -13,7 +13,7 @@ export class PaymentController {
   
   @post('/payment-methods')
   async paymentMethods(@requestBody() paymentMethod: PaymentMethod) {
-    if ( !paymentMethod) {
+    if (!paymentMethod) {
       throw new HttpErrors.Unauthorized('No Payment Methods');
     }
 
