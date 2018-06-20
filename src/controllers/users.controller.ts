@@ -7,7 +7,7 @@ import {
   param,
 } from '@loopback/rest';
 import * as bcrypt from 'bcrypt';
-import {Login} from '../models/login';
+import { Login } from '../models/login';
 import { Donation } from "../models/donation";
 import { DonationRepository } from "../repositories/donation.repository";
 //import { Stripe } from '@ionic-native/stripe';
@@ -16,9 +16,10 @@ import { DonationRepository } from "../repositories/donation.repository";
 
 export class UserController {
   constructor(
-    @repository(UserRepo) private userRepo: UserRepo,
+
     @repository(DonationRepository) private donationRepo: DonationRepository,
-  ) {}
+    @repository(UserRepo) protected userRepo: UserRepo,
+  ) { }
 
   @get('/users')
   async findUsers(): Promise<User[]> {
@@ -45,13 +46,13 @@ export class UserController {
     if (!userExists) {
       throw new HttpErrors.BadRequest('ID ${user_id} does not exist');
     }
-    
+
     return await this.donationRepo.find({
       where: {
         user_id: user_id
       }
     });
-}
- 
   }
+
+}
 

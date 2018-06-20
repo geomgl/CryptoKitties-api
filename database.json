@@ -1,16 +1,22 @@
 
-{"defaultEnv": {"ENV": "NODE_ENV"},
+{
+        "defaultEnv" : {"ENV": "NODE_ENV" },
 
-
-
-
-    "dev": {
-        "driver": "mysql",
-        "host": "localhost",
-        "port": "3306",
-        "user": "root",
-        "password": "wrap-san",
-        "database": "golden-thread"   
-    }
+        "george": {
+                "driver": "mysql",
+                "host": "localhost",
+                "port": "3306",
+                "user": "root",
+                "password": "four",
+                "database": "crypto_kitties"
+        },
+        
+        "dev": {
+                "driver": "mysql",
+                "host": "localhost",
+                "port": "3306",
+                "user": "root",
+                "password": "four",
+                "database": "crypto_kitties"
+        }
 }
-

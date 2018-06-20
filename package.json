@@ -30,7 +30,9 @@
     "posttest": "npm run lint",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "george": "(set NODE_ENV=george) && (set DATABASE_HOST=localhost) && (set DATABASE_NAME=crypto_kitties) && (set DATABASE_USERNAME=root) && (set DATABASE_PASSWORD=four) && node ."
+
   },
   "repository": {
     "type": "git"
@@ -62,6 +64,7 @@
     "jsonwebtoken": "^8.3.0",
     "loopback-connector-mysql": "^5.2.0",
     "rxjs": "^5.5.11",
+    "typescript": "^2.9.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

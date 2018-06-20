@@ -20,12 +20,13 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
       rest: {
         port: process.env.PORT || 3000
       }
-    });
+
+    })
 
     // Set up the custom sequence
     this.sequence(MySequence);
-
     this.projectRoot = __dirname;
+
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
       controllers: {
@@ -35,7 +36,6 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
         nested: true,
       },
     };
-
 
     // var environment = process.env.NODE_ENV;
     var databaseName = 'golden_thread';
@@ -58,25 +58,18 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
     // console.log(environment);
     // console.log(databaseName);
 
-  
     var dataSourceConfig = new juggler.DataSource({
-
       name: "db",
       connector: 'loopback-connector-mysql',
-      host: 'localhost',
+      host: process.env.DATABASE_HOST,
       port: 3306,
-      database: databaseName,
-      username: databaseUsername,
-      password: databasePassword
-      });
 
-      // host: process.env.DATABASE_HOST,
-      // port: 3306,
-      // database: process.env.DATABASE_NAME,
-      // username: process.env.DATABASE_USERNAME,
-      // password: process.env.DATABASE_PASSWORD
+      database: process.env.DATABASE_NAME,
+      user: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD
+    })
 
-    // Use the below to use an in-memory database
+  //Use the below to use an in-memory database
   // var dataSourceConfig = new juggler.DataSource({
   //   name: "db",
   //   connector: "memory"
