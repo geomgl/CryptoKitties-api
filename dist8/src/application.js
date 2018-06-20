@@ -23,7 +23,11 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.Repositor
             },
         };
         // var environment = process.env.NODE_ENV;
+<<<<<<< HEAD
         var databaseName = 'crypto_kitties';
+=======
+        var databaseName = 'golden_thread';
+>>>>>>> master
         var databaseUsername = 'root';
         var databasePassword = 'four';
         // if (environment = 'john') {
@@ -47,7 +51,11 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.Repositor
             username: databaseUsername,
             password: databasePassword
         });
+<<<<<<< HEAD
         //Use the below to use an in-memory database
+=======
+        // //Use the below to use an in-memory database
+>>>>>>> master
         // var dataSourceConfig = new juggler.DataSource({
         //   name: "db",
         //   connector: "memory"

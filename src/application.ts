@@ -63,7 +63,11 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
       password: databasePassword
       });
 
+<<<<<<< HEAD
   //Use the below to use an in-memory database
+=======
+  // //Use the below to use an in-memory database
+>>>>>>> master
   // var dataSourceConfig = new juggler.DataSource({
   //   name: "db",
   //   connector: "memory"
