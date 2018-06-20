@@ -14,11 +14,13 @@ import { Class,
 export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestApplication)) {
   
   constructor(options?: ApplicationConfig) {
-    // super(options);
+    //super(options);
+
     super({
       rest: {
         port: process.env.PORT || 3000
       }
+
     })
 
     // Set up the custom sequence
@@ -35,11 +37,33 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
       },
     };
 
+    // var environment = process.env.NODE_ENV;
+    var databaseName = 'golden_thread';
+    var databaseUsername = 'root';
+    var databasePassword = 'wrap-san';
+
+    // if (environment = 'john') {
+    //   //databaseName = 'golden_thread';
+    //   databaseName = process.env.DATABASE_NAME as string;
+    // }
+
+    // if (environment = 'gemma') {
+    //   databaseName = 'golden_thread';
+    // }
+
+    // if (environment = 'george') {
+    //   databaseName = 'golden_thread';
+    // }
+
+    // console.log(environment);
+    // console.log(databaseName);
+
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
       connector: 'loopback-connector-mysql',
       host: process.env.DATABASE_HOST,
       port: 3306,
+
       database: process.env.DATABASE_NAME,
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD
