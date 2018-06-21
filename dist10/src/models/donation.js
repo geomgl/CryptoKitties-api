@@ -45,6 +45,12 @@ __decorate([
         type: 'string',
     }),
     __metadata("design:type", String)
+], Donation.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
 ], Donation.prototype, "frequency", void 0);
 __decorate([
     repository_1.property({

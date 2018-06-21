@@ -17,10 +17,12 @@ const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const donation_repository_1 = require("../repositories/donation.repository");
 //import { Stripe } from '@ionic-native/stripe';
+const cryptoanimal_repository_1 = require("../repositories/cryptoanimal.repository");
 let UserController = class UserController {
-    constructor(donationRepo, userRepo) {
+    constructor(donationRepo, userRepo, cryptoanimalRepo) {
         this.donationRepo = donationRepo;
         this.userRepo = userRepo;
+        this.cryptoanimalRepo = cryptoanimalRepo;
     }
     async findUsers() {
         return await this.userRepo.find();
@@ -39,6 +41,17 @@ let UserController = class UserController {
             throw new rest_1.HttpErrors.BadRequest('ID ${user_id} does not exist');
         }
         return await this.donationRepo.find({
+            where: {
+                user_id: user_id
+            }
+        });
+    }
+    async findCryptoanimalsByUserId(user_id) {
+        let userExists = !!(await this.userRepo.count({ user_id }));
+        if (!userExists) {
+            throw new rest_1.HttpErrors.BadRequest('ID ${user_id} does not exist');
+        }
+        return await this.cryptoanimalRepo.find({
             where: {
                 user_id: user_id
             }
@@ -65,11 +78,20 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findDonationsByUserId", null);
+__decorate([
+    rest_1.get('/users/{user_id}/cryptoanimals'),
+    __param(0, rest_1.param.path.number('user_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "findCryptoanimalsByUserId", null);
 UserController = __decorate([
     __param(0, repository_1.repository(donation_repository_1.DonationRepository)),
     __param(1, repository_1.repository(user_repository_1.UserRepo)),
+    __param(2, repository_1.repository(cryptoanimal_repository_1.CryptoanimalRepository)),
     __metadata("design:paramtypes", [donation_repository_1.DonationRepository,
-        user_repository_1.UserRepo])
+        user_repository_1.UserRepo,
+        cryptoanimal_repository_1.CryptoanimalRepository])
 ], UserController);
 exports.UserController = UserController;
 //# sourceMappingURL=users.controller.js.map

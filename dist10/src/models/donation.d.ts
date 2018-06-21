@@ -4,6 +4,7 @@ export declare class Donation extends Entity {
     amount: number;
     user_id: number;
     charity_id: number;
+    name: string;
     frequency: string;
     project_id?: string;
     date: string;

@@ -9,7 +9,7 @@ const repository_1 = require("@loopback/repository");
 /* tslint:enable:no-unused-variable */
 class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
-        // super(options);
+        //super(options);
         super({
             rest: {
                 port: process.env.PORT || 3000
@@ -27,6 +27,19 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(repository_1.Repositor
                 nested: true,
             },
         };
+        // var environment = process.env.NODE_ENV;
+        // if (environment = 'john') {
+        //   //databaseName = 'golden_thread';
+        //   databaseName = process.env.DATABASE_NAME as string;
+        // }
+        // if (environment = 'gemma') {
+        //   databaseName = 'golden_thread';
+        // }
+        // if (environment = 'george') {
+        //   databaseName = 'golden_thread';
+        // }
+        // console.log(environment);
+        // console.log(databaseName);
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
             connector: 'loopback-connector-mysql',
