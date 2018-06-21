@@ -28,6 +28,11 @@ export class Donation extends Entity {
   @property({
     type: 'string',
   })
+  name: string;
+
+  @property({
+    type: 'string',
+  })
   frequency: string;
 
   @property({

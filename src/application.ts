@@ -38,9 +38,6 @@ export class GoldenThreadApiApplication extends BootMixin(RepositoryMixin(RestAp
     };
 
     // var environment = process.env.NODE_ENV;
-    var databaseName = 'golden_thread';
-    var databaseUsername = 'root';
-    var databasePassword = 'wrap-san';
 
     // if (environment = 'john') {
     //   //databaseName = 'golden_thread';

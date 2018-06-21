@@ -10,7 +10,9 @@ import * as bcrypt from 'bcrypt';
 import { Login } from '../models/login';
 import { Donation } from "../models/donation";
 import { DonationRepository } from "../repositories/donation.repository";
+import { Cryptoanimal } from '../models/cryptoanimal';
 //import { Stripe } from '@ionic-native/stripe';
+import { CryptoanimalRepository } from "../repositories/cryptoanimal.repository";
 
 
 
@@ -19,6 +21,7 @@ export class UserController {
 
     @repository(DonationRepository) private donationRepo: DonationRepository,
     @repository(UserRepo) protected userRepo: UserRepo,
+    @repository(CryptoanimalRepository) private cryptoanimalRepo: CryptoanimalRepository,
   ) { }
 
   @get('/users')
@@ -48,6 +51,21 @@ export class UserController {
     }
 
     return await this.donationRepo.find({
+      where: {
+        user_id: user_id
+      }
+    });
+  }
+
+  @get('/users/{user_id}/cryptoanimals')
+  async findCryptoanimalsByUserId(@param.path.number('user_id') user_id: number): Promise<Array<Cryptoanimal>> {
+    let userExists: boolean = !!(await this.userRepo.count({ user_id }));
+
+    if (!userExists) {
+      throw new HttpErrors.BadRequest('ID ${user_id} does not exist');
+    }
+
+    return await this.cryptoanimalRepo.find({
       where: {
         user_id: user_id
       }
